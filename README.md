@@ -42,9 +42,9 @@ If you run multiple AI agents (Claude Code, Codex, Gemini, etc.), [OACP](https:/
 **2. Setup (one-time) — paste into your coordinator:**
 
 ~~~
-Install oacp-cli if not already installed. Create a new OACP project called
-"brainstorm" with claude, codex, and gemini as agents. Run oacp doctor to
-verify everything works.
+Install oacp-cli (https://github.com/kiloloop/oacp) if not already installed.
+Create a new OACP project called "brainstorm" with claude, codex, and gemini
+as agents. Run oacp doctor to verify everything works.
 ~~~
 
 **3. Dispatch — tell your coordinator what to brainstorm:**
@@ -78,7 +78,8 @@ Go to each non-coordinator agent session and paste:
 
 ~~~
 Check your OACP inbox for the brainstorm project. Read the request and
-respond following the OACP inbox protocol.
+respond following the OACP inbox protocol
+(https://github.com/kiloloop/oacp/blob/main/docs/protocol/inbox_outbox.md).
 ~~~
 
 If your agents already run `/loop 2m /check-inbox`, skip this step — they'll pick up the request automatically.
