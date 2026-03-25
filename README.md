@@ -33,6 +33,66 @@ The **interactive direction** step is what makes this different from side-by-sid
 
 ## Getting Started
 
+### With OACP (recommended)
+
+If you run multiple AI agents (Claude Code, Codex, Gemini, etc.), [OACP](https://github.com/kiloloop/oacp) handles the dispatch and collection. First brainstorm: 5 min setup. Every one after: 30 seconds.
+
+**1. Pick a coordinator.** Choose one of your agents (Claude Code or Codex) to run the brainstorm. It will dispatch to the others and synthesize results.
+
+**2. Setup (one-time) — paste into your coordinator:**
+
+~~~
+Install oacp-cli if not already installed. Create a new OACP project called
+"brainstorm" with claude, codex, and gemini as agents. Run oacp doctor to
+verify everything works.
+~~~
+
+**3. Dispatch — tell your coordinator what to brainstorm:**
+
+~~~
+I want to brainstorm about [YOUR TOPIC HERE].
+
+Use the brainstorm template below. Replace the topic, then dispatch to all
+other agents using oacp send with --type brainstorm_request.
+
+---
+We need to decide: [YOUR TOPIC]
+
+Context: [relevant background, constraints, goals]
+
+Research this topic online first — search for recent discussions, benchmarks,
+case studies, and expert opinions. Use real data, not just training knowledge.
+
+Then provide:
+1. Your recommended approach with rationale
+2. Top 3 risks or tradeoffs
+3. One contrarian take we should consider
+
+Cite your sources.
+---
+~~~
+
+**4. Triage — tell your other agents to respond:**
+
+Go to each non-coordinator agent session and paste:
+
+~~~
+Check your OACP inbox for the brainstorm project. Read the request and
+respond following the OACP inbox protocol.
+~~~
+
+If your agents already run `/loop 2m /check-inbox`, skip this step — they'll pick up the request automatically.
+
+**5. Collect & synthesize:**
+
+Back in your coordinator:
+
+~~~
+Check the brainstorm project inboxes for responses. Read all responses, then
+write a synthesis: where agents agree, where they disagree, unique insights
+from each, and a recommended decision.
+~~~
+
 ### Manual (no tools required)
 1. Read the [protocol doc](docs/protocol.md) — full step-by-step guide
 2. Browse the [examples](examples/) — real brainstorm results with commentary
@@ -40,9 +100,6 @@ The **interactive direction** step is what makes this different from side-by-sid
 4. Run your first brainstorm with whatever AI tools you already have
 
 For larger research projects, see the [Multi-Agent Research Runbook](docs/multi-agent-research-runbook.md) — a full playbook for angle-splitting, parallel dispatch, synthesis, and signoff.
-
-### With OACP (automated dispatch)
-If you use [OACP](https://github.com/kiloloop/oacp) for agent coordination, the brainstorm skill automates dispatch and tracking. See the [protocol doc](docs/protocol.md) for setup.
 
 ## Examples
 
